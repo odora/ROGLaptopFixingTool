@@ -20,11 +20,11 @@ public class CleanCacheController {
         //System.out.println(path+"sample/program/nircmd.exe elevate "+path+"sample/program/cleanCache.bat");
         Runtime rt = Runtime.getRuntime(); //Runtime.getRuntime()返回当前应用程序的Runtime对象
         Process ps = null;  //Process可以控制该子进程的执行或获取该子进程的信息。
-        URL fileURL =this.getClass().getResource("sample/program/nircmd.exe elevate src\\sample\\program\\cleanCache.bat");
+        // URL fileURL =this.getClass().getResource("sample/program/nircmd.exe elevate src\\sample\\program\\cleanCache.bat");
 
         try {
-            //ps = rt.exec("src/sample/program/nircmd.exe elevate src\\sample\\program\\cleanCache.bat");  //该对象的exec()方法指示Java虚拟机创建一个子进程执行指定的可执行程序，并返回与该子进程对应的Process对象实例。
-            ps = rt.exec(fileURL.getFile());
+            ps = rt.exec(Objects.elevate("sample/program/cleanCache.bat"));  //该对象的exec()方法指示Java虚拟机创建一个子进程执行指定的可执行程序，并返回与该子进程对应的Process对象实例。
+            //ps = rt.exec(fileURL.getFile());
             ps.waitFor();  //等待子进程完成再往下执行。
         } catch (IOException e1) {
             e1.printStackTrace();
